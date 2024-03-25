@@ -1,6 +1,6 @@
-OS = LINUX
+#OS = LINUX
 #OS = MACOSX
-#OS = MACOSX_CLANG
+OS = MACOSX_CLANG
 #OS = WINDOWS
 
 ifeq ($(OS), LINUX)
@@ -16,17 +16,7 @@ SFLAG = -s
 CLILIBS = -lglut -lGLU -lGL -lm
 MAKEFLAGS = --jobs=12
 
-else ifeq ($(OS), MACOSX)
-ALL = MotionCal.dmg
-CC = gcc-4.2
-CXX = g++-4.2
-CFLAGS = -O2 -Wall -D$(OS)
-WXCONFIG = ~/wxwidgets/3.0.2.mac-opengl/bin/wx-config
-WXFLAGS = `$(WXCONFIG) --cppflags`
-CXXFLAGS = $(CFLAGS) `$(WXCONFIG) --cppflags`
-SFLAG = -s
-CLILIBS = -lglut -lGLU -lGL -lm
-VERSION = 0.01
+
 
 else ifeq ($(OS), MACOSX_CLANG)
 ALL = MotionCal.app
