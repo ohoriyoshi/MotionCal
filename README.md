@@ -1,111 +1,71 @@
-こちらにMakefileの編集を含む完全なビルド手順をまとめます。
+# MotionCal Project Build Instructions for macOS
 
-MotionCal プロジェクトのビルドとMakefile編集手順（Mac用）
-前提条件
-Macコンピュータにアクセスがあり、インターネットに接続されていること。
-基本的なターミナル操作に慣れていること。
-手順
-Homebrewのインストール:
+This document provides a comprehensive guide for setting up and building the MotionCal project on macOS.
 
-ターミナルを開いて以下のコマンドを実行します：
-bash
-Copy code
+## Prerequisites
+
+- Access to a macOS computer with internet connectivity.
+- Familiarity with basic terminal operations.
+
+## Installation Steps
+
+### 1. Install Homebrew
+
+Open the terminal and execute the following command:
+
+```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-インストールが終わったら、Homebrewをシェルのパスに追加します：
-bash
+
+Add Homebrew to your shell's PATH by running:
+
+sh
 Copy code
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
-シェルを再起動するか、以下のコマンドで変更を適用します：
-bash
+Apply the changes by sourcing your profile:
+
+sh
 Copy code
 source ~/.zprofile
-依存関係のインストール:
+2. Install Dependencies
+Install wxWidgets using Homebrew:
 
-wxWidgetsをインストールします：
+sh
 Copy code
 brew install wxwidgets
-プロジェクトのクローンまたはダウンロード:
+Check the installation by verifying the version of wx-config:
 
-GitHubから MotionCal プロジェクトをクローンするか、ZIPでダウンロードします。
-Makefileの編集:
-
-MotionCal のディレクトリに移動し、Makefileをテキストエディタで開きます。
-Mac用のビルドオプションをアクティブにし、必要に応じてパスを編集します。例えば、以下のように変更することがあります：
-makefile
+sh
 Copy code
-#OS = LINUX
-#OS = MACOSX
+wx-config --version
+3. Clone or Download the Project
+Clone the MotionCal project from GitHub or download it as a ZIP file and extract it.
+
+4. Edit the Makefile
+Navigate to the MotionCal directory and open the Makefile in a text editor. Make the necessary edits for macOS build options:
+
+make
+Copy code
+# Uncomment the line for macOS and add the architecture flag for ARM64
 OS = MACOSX_CLANG
-#OS = WINDOWS
-そして、MACOSX_CLANG セクション内で -arch arm64 フラグを追加します：
-bash
-Copy code
 CFLAGS = -O2 -Wall -DMACOSX -arch arm64
-他の編集が必要な場合は、Makefile内の対応するセクションを調整します。
-ビルドの実行:
+Adjust any other necessary sections in the Makefile as per your requirements.
 
-ターミナルで以下のコマンドを実行してビルドを開始します：
-go
+5. Build the Project
+In the terminal, initiate the build process with:
+
+sh
 Copy code
 make
-エラーが表示された場合は、その指示に従って修正を行います。
-アプリケーションの実行:
+Follow any error instructions to make required adjustments.
 
-ビルドが成功したら、生成された MotionCal.app をターミナルから実行できます：
-arduino
-Copy code
-open MotionCal.app
-トラブルシューティング:
+6. Run the Application
+Once the build is successful, execute the generated MotionCal.app:
 
-ビルドプロセスで問題が発生した場合、エラーメッセージを確認し、必要な修正を行います。
-
-
-
-こちらが MotionCal プロジェクトをビルドするための手順書です：
-
-Macで MotionCal プロジェクトをビルドする手順
-Homebrewのインストール:
-
-Terminalを開き、以下のコマンドを実行してHomebrewをインストールします：
-sh
-Copy code
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-インストールが完了したら、以下のコマンドを実行してHomebrewをパスに追加します：
-sh
-Copy code
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/your-username/.zprofile
-eval "$(/opt/homebrew/bin/brew shellenv)"
-上記の your-username は実際のユーザーネームに置き換えてください。
-シェルの設定を反映させるため、次のコマンドを実行します：
-sh
-Copy code
-source ~/.zprofile
-依存関係のインストール:
-
-wxWidgets ライブラリをインストールするため、Terminalで次のコマンドを実行します：
-sh
-Copy code
-brew install wxwidgets
-正しくインストールされたか確認するために、wx-config --version コマンドでバージョンをチェックします。
-プロジェクトのクローン:
-
-GitHubから MotionCal プロジェクトをクローンするか、必要なファイルをダウンロードします。
-ビルドの実行:
-
-プロジェクトのディレクトリに移動し、make コマンドを実行してビルドを開始します。
-sh
-Copy code
-cd /path/to/MotionCal-master
-make
-/path/to/MotionCal-master はプロジェクトの実際のパスに置き換えてください。
-アプリケーションの起動:
-
-ビルドが成功すれば、生成された MotionCal.app を以下のコマンドで開くことができます：
 sh
 Copy code
 open MotionCal.app
-問題のトラブルシューティング:
+7. Troubleshooting
+If you encounter build issues, consult the error messages and perform the necessary troubleshooting.
 
-もしビルド中にエラーが発生した場合は、エラーメッセージを確認して問題の特定と修正を行います。
-特定のツールが見つからない場合は、それがインストールされていることを確認し、必要に応じてインストールします。
+For additional information, contributions, or questions, please refer to the issues section or submit a pull request.
