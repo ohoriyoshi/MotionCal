@@ -22,7 +22,7 @@ else ifeq ($(OS), MACOSX_CLANG)
 ALL = MotionCal.app
 CC = /usr/bin/clang
 CXX = /usr/bin/clang++
-CFLAGS = -O2 -Wall -DMACOSX
+CFLAGS = -O2 -Wall -DMACOSX -arch arm64  # ここに `-arch arm64` を追加しました。
 WXCONFIG = wx-config
 WXFLAGS = `$(WXCONFIG) --cppflags`
 CXXFLAGS = $(CFLAGS) `$(WXCONFIG) --cppflags`
